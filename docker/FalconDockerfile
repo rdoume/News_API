@@ -1,0 +1,13 @@
+FROM python:2.7
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ADD . /usr/src/app
+RUN ["python", "setup.py", "develop"]
+
+RUN mkdir -p docker/api/
+
+EXPOSE 8000
+
+CMD ["./docker/falcon-docker-entrypoint.sh", "start"]

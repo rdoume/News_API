@@ -1,0 +1,22 @@
+version: '2'
+services:
+  api:
+    build:
+      dockerfile: docker/FalconDockerfile
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - FALCON_SETTINGS_MODULE=news_api.settings.docker
+
+    links:
+
+      - redisdb
+
+  redisdb:
+    image: redis
+    ports:
+      - "4379:6379"
+
