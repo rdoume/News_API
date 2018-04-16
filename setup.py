@@ -30,19 +30,18 @@ def get_requirements(reqfile):
         )
 
         deps.add(requirement)
-    return deps
+    return list(deps)
 
 
 setuptools.setup(
     name='News_API',
-    description='All the function for the api',
-    version=':versiontools:news_api:',
+    description='API for the Qwant news cluster. The cluster is currently hosted on a vespa-engine setup',
+    version='0.0.1',
 
     packages=setuptools.find_packages(),
     include_package_data=True,
     install_requires=get_requirements('requirements/requirements.txt'),
     tests_require=get_requirements('requirements/test-requirements.txt'),
-    setup_requires=('versiontools'),
 
     author='Robin',
     author_email='robin@qwantresearch.com',

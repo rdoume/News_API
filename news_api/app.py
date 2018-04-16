@@ -9,18 +9,16 @@ import falcon
 # Local imports
 from news_api.sample.models import SampleResource
 
+from news_api.endpoints.models import SimpleSearch
 
 # Create resources
-sample_resource = SampleResource()
+intro = SampleResource()
+simplesearch = SimpleSearch()
 
 
 # Create falcon app
 app = falcon.API()
-app.add_route('/sample_resource', sample_resource)
+app.add_route('/', intro)
+app.add_route('/search',simplesearch)
 
 
-# Useful for debugging problems in API, it works with pdb
-if __name__ == '__main__':
-    from wsgiref import simple_server  # NOQA
-    httpd = simple_server.make_server('127.0.0.1', 8000, app)
-    httpd.serve_forever()
