@@ -12,6 +12,7 @@ This is a big work in progress, so far, and is used a training for vespa.
 ### Simple Search:
 
 So far, the following parameters are accepted:
+
         :param query: User query to search (required)
         :param toDate: Maximum datelimit for the publication date (optionnal, default = now() )
         :param fromDate: Minimum datelimit for the publication date (optionnal)

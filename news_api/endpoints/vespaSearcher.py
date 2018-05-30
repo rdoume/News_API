@@ -40,8 +40,10 @@ def GenerateNewsYql(params):
 
     yql='&yql=select * from sources * where userQuery()'
     
-    if 'source'in params:
+    if 'source' in params:
             yql+= " and hostsite contains \" "+params['source']+" \""
+    if 'language' in params:
+            yql+= " and country contains \""+params['language']+"\""
     yql+= GenerateDateParamYql(params)
     if 'count' in params:
         if params['count'].isdigit():

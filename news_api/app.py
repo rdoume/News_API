@@ -9,16 +9,22 @@ import falcon
 # Local imports
 from news_api.sample.models import SampleResource
 
-from news_api.endpoints.models import SimpleSearch
+from news_api.endpoints.models import SimpleSearch,TopEntities
+
+from news_api.connectors.postgres import Postgres
 
 # Create resources
 intro = SampleResource()
-simplesearch = SimpleSearch()
+db=Postgres()
 
+simplesearch = SimpleSearch()
+entity = TopEntities(db)
 
 # Create falcon app
 app = falcon.API()
-app.add_route('/', intro)
-app.add_route('/search',simplesearch)
+app.add_route('/v1/search',simplesearch)
+app.add_route('/v1/entities/',entity)
+app.add_route('/v1/clusters/',simplesearch)
+
 
 
