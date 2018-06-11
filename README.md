@@ -28,11 +28,11 @@ The different accepted parameters are the following :
 
 Example query : 
 > http://0.0.0.0:8000/v1/search/?query=test&count=1
-retun : 
+return : 
 	  
 
       {
-        status: "OK",
+        status: "1",
         message: "",
         result: {
 	        root: {
