@@ -78,17 +78,16 @@ class TopEntities(object):
                 "category": search_params["category"]
                 if "category" in search_params
                 else None,
-                "number": search_params["number"]
-                if "number" in search_params
+                "count": int(search_params["count"])
+                if "count" in search_params
                 else None,
             }
             if search_params is None or "country" not in search_params:
                 resp.status = falcon.HTTP_400
             else:
-                print((default_params["number"]))
                 list_entities = getTopNewEntities(
                     self._db.connection,
-                    number=int(default_params["number"]),
+                    count=default_params["count"],
                     country=default_params["country"],
                     category=default_params["category"],
                 )

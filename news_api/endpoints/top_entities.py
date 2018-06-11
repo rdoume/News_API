@@ -4,7 +4,7 @@ import numpy as np
 from news_api.endpoints.sqlEntityQueries import getQueryTopEntity
 
 
-def getTopNewEntities(conn, country, category=None, window=-2, limit=100, number=None):
+def getTopNewEntities(conn, country, category=None, window=-2, limit=100, count=None):
     numday = window
     now = pendulum.now()
     all_en = []
@@ -32,9 +32,9 @@ def getTopNewEntities(conn, country, category=None, window=-2, limit=100, number
     today["idf"] = df["idf"]
     today["tfidf"] = today["idf"] * today["tf"]
     # print(number * 2)
-    if number is not None:
+    if count is not None:
         list_entities = list(
-            today.sort_values(["tfidf"], ascending=False)[0:number].index
+            today.sort_values(["tfidf"], ascending=False)[0:count].index
         )
     else:
         list_entities = list(today.sort_values(["tfidf"], ascending=False)[0:].index)
