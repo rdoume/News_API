@@ -141,20 +141,65 @@ The goal of this route is to provide group of news that speaks about a similar t
 
    > - *count*: How many entities should be returned
    > - *lang* : Language of the news in the cluster
+   > - *ordering* : How to order the clusters (date,size,coherence)
   
 ####  Example:
 
 Query: 
-> http://0.0.0.0:8000/v1/clusters/?count=5
+> http://0.0.0.0:8000/v1/clusters/?country=fr&count=1&ordering=date
 
-		{
-		   status:  "1",    
-		   message:  "",
-		   result:[
-		       "Agnès Buzyn",
-		       "Anne Hidalgo",
-		       "Antoine Griezmann",
-		       "Badra",
-		       "Benoît Hamon"
-		    ]
-		}
+        {
+    status: "1",
+    message: "",
+    result: [
+        {
+            url: "https://lexpansion.lexpress.fr/actualites/1/actualite-economique/l-insee-confirme-un-ralentissement-de-l-emploi-au-1er-trimestre_2016328.html",
+            date: "2018-06-12 09:30:29",
+            size: 5,
+            title: "L'Insee confirme un ralentissement de l'emploi au 1er trimestre",
+        content: [
+            {
+                id: "c244033b9335422a",
+                url: "https://lexpansion.lexpress.fr/actualites/1/actualite-economique/l-insee-confirme-un-ralentissement-de-l-emploi-au-1er-trimestre_2016328.html",
+                title: "L'Insee confirme un ralentissement de l'emploi au 1er trimestre",
+                category: ""
+            },
+            {
+                id: "88078964e6d065bc",
+                url: "http://www.lefigaro.fr/flash-eco/2018/06/12/97002-20180612FILWWW00039-la-france-a-cree-48800-emplois-salaries-au-premier-trimestre.php",
+                title: "La France a créé 48800 emplois salariés au premier trimestre",
+                category: "economy"
+            },
+            {
+                id: "47870bd3ac2a1805",
+                url: "http://www.lepoint.fr/economie/la-france-a-cree-48-000-emplois-au-1er-trimestre-12-06-2018-2226274_28.php#xtor=CS1-203",
+                title: "La France a créé 48 000 emplois au 1er trimestre",
+                category: "economy"
+            },
+            {
+                id: "3734e658a6ae4074",
+                url: "https://lexpansion.lexpress.fr/actualites/1/actualite-economique/l-insee-confirme-un-ralentissement-des-creations-d-emplois-au-1er-trimestre_2016366.html",
+                title: "L'Insee confirme un ralentissement des créations d'emplois au 1er trimestre",
+                category: "economy"
+            },
+            {
+                id: "f24b1738849bc2b6",
+                url: "https://www.lemonde.fr/emploi/article/2018/06/12/l-emploi-salarie-progresse-mais-marque-un-ralentissement-au-premier-trimestre_5313394_1698637.html",
+                title: "L’emploi salarié progresse mais marque un ralentissement au premier trimestre",
+                category: "economy"
+            }
+        ],
+        categories: [
+                [
+                    "economy",
+                    0.8
+                ],
+                [
+                    "",
+                    0.2
+                ]
+            ],
+        cluster_score: 0.661
+        }
+    ]
+}
