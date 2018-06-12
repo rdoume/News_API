@@ -5,6 +5,7 @@ App runner
 # System imports
 # Third-party imports
 import falcon
+from falcon_cors import CORS
 
 # Local imports
 
@@ -20,7 +21,9 @@ clusters = TopClusters(db)
 
 
 # Create falcon app
-app = falcon.API()
+
+public_cors = CORS(allow_all_origins=True)
+app = falcon.API(middleware=[public_cors.middleware])
 app.add_route("/v1/search", simplesearch)
 app.add_route("/v1/entities/", entity)
 app.add_route("/v1/clusters/", clusters)
