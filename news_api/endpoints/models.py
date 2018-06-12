@@ -136,9 +136,7 @@ class TopClusters(object):
                 "category": search_params["category"]
                 if "category" in search_params
                 else None,
-                "numbercluster": search_params["numbercluster"]
-                if "numbercluster" in search_params
-                else None,
+                "count": search_params["count"] if "count" in search_params else None,
                 "ordering": search_params["ordering"]
                 if "ordering" in search_params
                 else None,
@@ -148,7 +146,7 @@ class TopClusters(object):
                 pass
             list_clusters = getTopNewCluster(
                 self._db.connection,
-                number=default_params["numbercluster"],
+                count=default_params["count"],
                 country=default_params["country"],
                 category=default_params["category"],
                 ordering_method=default_params["ordering"],

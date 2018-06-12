@@ -20,15 +20,15 @@ def ordering_cluster(cluster, method="date"):
 
 
 def getTopNewCluster(
-    conn, number=5, country="fr", lang="fr", category=None, ordering_method="size"
+    conn, count=5, country="fr", lang="fr", category=None, ordering_method="size"
 ):
     cur = conn.cursor()
-    if number is None:
-        number = 5
+    if count is None:
+        count = 5
     if lang is None:
         lang = "fr"
     if ordering_method is None:
-        ordering_method = "score"
+        ordering_method = "date"
 
     query = """
     SELECT date as date,
@@ -44,8 +44,8 @@ def getTopNewCluster(
     cur.execute(query)
     datetime, cluster = cur.fetchone()
     ordered_cluster = ordering_cluster(cluster, method=ordering_method)
-    number = int(number)
-    if number <= 0 or number > len(ordered_cluster):
-        number = len(ordered_cluster) - 1
+    count = int(count)
+    if count <= 0 or count > len(ordered_cluster):
+        count = len(ordered_cluster) - 1
 
-    return ordered_cluster[0:number]
+    return ordered_cluster[0:count]
