@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update  
 RUN apt-get install -y build-essential gunicorn
 RUN pip install --upgrade pip==9.0.3
-RUN mkdir -p /deploy/logs
+RUN mkdir -p /deploy/api/logs
 COPY . /deploy/api
 
 RUN pip install -r /deploy/api/requirements/requirements.txt
