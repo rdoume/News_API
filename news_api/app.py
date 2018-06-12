@@ -21,8 +21,10 @@ clusters = TopClusters(db)
 
 
 # Create falcon app
-
-public_cors = CORS(allow_all_origins=True)
+cors = CORS(allow_origins_list=["http://localhost:000"])
+public_cors = CORS(
+    allow_all_origins=True, allow_all_methods=True, allow_all_headers=True
+)
 app = falcon.API(middleware=[public_cors.middleware])
 app.add_route("/v1/search", simplesearch)
 app.add_route("/v1/entities/", entity)
