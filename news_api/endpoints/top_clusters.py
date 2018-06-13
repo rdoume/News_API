@@ -53,7 +53,7 @@ def getTopNewCluster(
     ORDER BY date DESC
     LIMIT 1;
     """.format(
-        pendulum.now().to_datetime_string(), country, category
+        pendulum.now(tz='Europe/Paris').to_datetime_string(), country, category
     )
     cur.execute(query)
     datetime, cluster = cur.fetchone()

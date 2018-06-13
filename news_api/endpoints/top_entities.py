@@ -6,7 +6,7 @@ from news_api.endpoints.sqlEntityQueries import getQueryTopEntity
 
 def getTopNewEntities(conn, country, category=None, window=-2, limit=100, count=None):
     numday = window
-    now = pendulum.now()
+    now = pendulum.now(tz='Europe/Paris')
     all_en = []
     cur = conn.cursor()
     for i in range(0, abs(numday)):
