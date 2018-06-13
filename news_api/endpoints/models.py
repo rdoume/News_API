@@ -135,7 +135,7 @@ class TopClusters(object):
                 else None,
                 "category": search_params["category"]
                 if "category" in search_params
-                else None,
+                else "main",
                 "count": search_params["count"] if "count" in search_params else None,
                 "ordering": search_params["ordering"]
                 if "ordering" in search_params

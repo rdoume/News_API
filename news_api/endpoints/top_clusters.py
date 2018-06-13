@@ -22,6 +22,17 @@ def ordering_cluster(cluster, method="date"):
 def getTopNewCluster(
     conn, count=5, country="fr", lang="fr", category=None, ordering_method="size"
 ):
+    enum_cat = [
+        "main",
+        "world",
+        "economy",
+        "sport",
+        "society",
+        "culture",
+        "tech",
+        "politics",
+        "health",
+    ]
     cur = conn.cursor()
     if count is None:
         count = 5
@@ -29,17 +40,20 @@ def getTopNewCluster(
         lang = "fr"
     if ordering_method is None:
         ordering_method = "date"
+    if category not in enum_cat:
+        category = "main"
 
     query = """
     SELECT date as date,
            dict as cluster
-    FROM public.clusters_table
+    FROM public.clusters_table_cat
     WHERE date <= '{0}'
     AND country= '{1}'
+    AND category='{2}'
     ORDER BY date DESC
     LIMIT 1;
     """.format(
-        pendulum.now().to_datetime_string(), country
+        pendulum.now().to_datetime_string(), country, category
     )
     cur.execute(query)
     datetime, cluster = cur.fetchone()
